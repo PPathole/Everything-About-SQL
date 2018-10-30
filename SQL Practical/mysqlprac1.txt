@@ -1,0 +1,37 @@
+Create a database COMPANY consisting of two tables EMP & DEPT  
+EMP:
+EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO 
+DEPT:
+DEPTNO, DNAME, LOCATION 
+  
+1.	Create database.Create above tables, set appropriate Primary Keys.
+2.	Add 10 rows to both the tables.
+3.	Add one new column: mobile_no to EMP table.
+4.	Delete the Employee 7369.
+5.	Increase the salary of 7499 by 10% 
+6.	Truncate Department Table.
+7.	Create a view that holds data of only manager
+8.	Display Employee names with their Department Names.
+
+CREATE TABLE emp(empno int, ename varchar(30), job varchar(30), mgr varchar(30), hiredate date, salary int, deptno int);
+CREATE TABLE dept(deptno int, dname varchar(30), location varchar(30));
+
+INSERT INTO emp VALUES(1, "pranay", "programmer", "manager", "2018-12-12", 30000, 1);
+
+//insert 9 more values like this
+
+INSERT INTO dept VALUES(1, "Manager HR", "Pune");
+
+//insert 9 more values like this
+
+ALTER TABLE emp ADD MOBILE_NO int;
+
+delete from emp where empno=7369;
+
+UPDATE emp SET salary=300000 where empno=7499;
+
+TRUNCATE TABLE dept;
+
+CREATE VIEW manager_records AS select * from emp WHERE mgr="manager";
+
+SELECT e.ename,d.dname from emp e, dept d;
