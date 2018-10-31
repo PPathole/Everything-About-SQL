@@ -1,0 +1,89 @@
+Create Student Collection(rollno,name,marks,class,city,branch) using MongoDB 
+1.	Find names of students who have obtained more than 300 marks
+2.	Display list of all students of Computer branch .
+3.	Find the first 5 toppers of TE
+4.	Sort the student names in descending order
+5.	Display only first 2 documents
+6.	Display all students who resides in Mumbai or Pune and has above 250 marks
+7.	Display only names and marks of each student
+
+use db
+db.student.insert(
+	[
+	{
+		"rollno":1,
+		"name":"pranay",
+		"marks":450,
+		"class":"TE",
+		"city":"pune",
+		"branch":"computer"
+	},
+	{
+		"rollno":2,
+		"name":"ruddu",
+		"marks":500,
+		"class":"SE",
+		"city":"mumbai",
+		"branch":"computer"
+	},
+	{
+		"rollno":3,
+		"name":"bajare",
+		"marks":300,
+		"class":"TE",
+		"city":"pune"
+		"branch":"production"
+	},
+	{
+		"rollno":4,
+		"name":"mohit",
+		"marks":200,
+		"class":"FE",
+		"city":"delhi",
+		"branch":"computer"
+	},
+	{
+		"rollno":5,
+		"name":"hrishi",
+		"marks":250,
+		"class":"TE",
+		"city":"LA",
+		"branch":"electrical"
+	}
+	]
+)
+
+db.student.find(
+	{"marks": {$gt:300}}
+)
+
+db.student.find(
+	{"branch": "computer"}
+)
+
+db.student.find(
+	{"class":"TE"}
+).sort({"marks":-1}).limit(5)
+
+db.student.find().sort({"name":-1})
+
+db.student.find().limit(2)
+
+db.student.find(
+
+	{
+		$or:[
+			{"city":"mumbai"},
+			{"city":"pune"}
+		]$and:{
+			{"marks":{$gt:250}}
+		}
+	
+	}
+	
+)
+
+db.student.find(
+	{"name":1, "marks:1", "_id":0}
+).pretty()
+

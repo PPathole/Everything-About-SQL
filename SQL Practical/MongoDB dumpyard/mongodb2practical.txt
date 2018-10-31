@@ -1,0 +1,100 @@
+   Perform MongoDB operations on product (pid, pname, quantity, price)
+1.	Insert 10 records in Product collection
+2.	Display products with prices above 4500
+3.	Display product having prices 1200 to 2500
+4.	Display product having highest price.
+5.	Sort all products according to price.
+6.	Create index on id field.
+7.	Display first record from dataset.
+8.	Delete product having pid=5
+
+
+use db
+db.product.insert(
+	[
+	{
+		"id":1,
+		"name":"iPhone X",
+		"quantity":2,
+		"price":1200
+	},
+	{
+		"id":2,
+		"name":"iPhone Xs",
+		"quantity":3,
+		"price":3000
+	},
+	{
+		"id":3,
+		"name":"iPhone XsMax",
+		"quantity":1,
+		"price":1200
+	},
+	{
+		"id":4,
+		"name":"iPad Pro",
+		"quantity":10,
+		"price":100000
+	},
+	{
+		"id":5,
+		"name":"PocoPhone",
+		"quantity":2,
+		"price":800
+	},
+	{
+		"id":6,
+		"name":"Files",
+		"quantity":40,
+		"price":250
+	},
+	{
+		"id":7,
+		"name":"Pen",
+		"quantity":100,
+		"price":1000
+	},
+	{
+		"id":8,
+		"name":"Stapler",
+		"quantity":50,
+		"price":700
+	},
+	{
+		"id":9,
+		"name":"Liquid Soap",
+		"quantity":5,
+		"price":100
+	},
+	{
+		"id":10,
+		"name":"Toothbrush",
+		"quantity":2,
+		"price":150
+	}
+	]
+)
+
+db.product.find(
+	{"price":{$gt:4500}}
+).pretty()
+
+
+db.product.find(
+	$and[
+		{"price":{$gt:1200}},
+		{"price":{$lt:2500}}
+	]
+).pretty()
+
+
+db.product.find().sort({"price":-1}).limit(1)
+
+
+db.product.find().sort({"price":1})
+
+db.product.findOne()
+
+db.product.remove(
+	{"id":5}
+)

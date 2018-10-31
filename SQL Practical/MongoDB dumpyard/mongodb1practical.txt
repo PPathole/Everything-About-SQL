@@ -1,0 +1,109 @@
+Perform following MongoDB CRUD operations on Employee(empid,ename,city,salary,)
+1.	Insert 10 records in Employee collection
+2.	Display all employees staying in Mumbai
+3.	Display employees who stays in Pune and has salary less than 50000
+4.	Display employees who works in sales dept and stays in city Nasik or  Nagpur.
+5.	Change the address of Employee “Ramesh” to Pune.
+6.	Create index on empid
+7.	Display employee having lowest salary.
+8.	Display first 5 highest paid employees
+
+use db
+db.employee.insert(
+	[
+	{
+		"id":1,
+		"name":"pranay",
+		"city":"pune",
+		"salary":2000
+	},
+	{
+		"id":2,
+		"name":"marques",
+		"city":"pune",
+		"salary":3000
+	},
+	{
+		"id":3,
+		"name":"elon",
+		"city":"mumbai",
+		"salary":30000
+	},
+	{
+		"id":4,
+		"name":"rajan",
+		"city":"pune",
+		"salary":3000
+	},
+	{
+		"id":5,
+		"name":"mukesh",
+		"city":"mumbai",
+		"salary":4000
+	},
+	{
+		"id":6,
+		"name":"Ramesh",
+		"city":"pune",
+		"salary":4000
+	},
+	{
+		"id":7,
+		"name":"suresh",
+		"city":"mumbai",
+		"salary":500
+	},
+	{
+		"id":8,
+		"name":"marlon",
+		"city":"mumbai",
+		"salary":300
+	},
+	{
+		"id":9,
+		"name":"ruddu",
+		"city":"pune",
+		"salary":100
+	},
+	{
+		"id":10,
+		"name":"rakesh",
+		"city":"pune",
+		"salary":2000
+	}
+	
+	]
+	
+)
+
+db.employee.find(
+
+	{"city":"mumbai"}
+
+).pretty()
+
+
+db.employee.find(
+
+	{
+		$and:[
+		
+		{"city":"pune"},
+		{"salary": {$lt:50000}}
+		
+		]
+	
+	}
+
+)
+
+
+db.employee.update(
+	{"id":6},
+	{"id":6, "name":"Ramesh", "city":"Mumbai", "salary":3000}
+)
+
+db.employee.find().sort({"salary":1}).limit(1)
+
+
+db.employee.find().sort({"salary": -1}).limit(5)

@@ -1,0 +1,124 @@
+  Implement product Collection using MongoDB and implement following queries.
+1.	Find all names of products having price above 10000
+2.	Sort the product names in descending order
+3.	Display all products having price above 10000 and manufactured in Mumbai
+4.	Display product having minimum price
+5.	Delete product having pid=5
+6.	Update price of Product “pencil” by 10
+7.	Create index on product collection
+
+use db
+db.product.insert(
+	[
+	{
+		"id":1,
+		"name":"iPhone X",
+		"quantity":2,
+		"price":1200,
+		"manufactured":"pune"
+	},
+	{
+		"id":2,
+		"name":"iPhone Xs",
+		"quantity":3,
+		"price":3000,
+		"manufactured":"LA"
+	},
+	{
+		"id":3,
+		"name":"iPhone XsMax",
+		"quantity":1,
+		"price":1200,
+		"manufactured":"China"
+	},
+	{
+		"id":4,
+		"name":"iPad Pro",
+		"quantity":10,
+		"price":100000,
+		"manufactured":"mumbai"
+	},
+	{
+		"id":5,
+		"name":"PocoPhone",
+		"quantity":2,
+		"price":800,
+		"manufactured":"pune"
+	},
+	{
+		"id":6,
+		"name":"Files",
+		"quantity":40,
+		"price":250,
+		"manufactured":"mumbai"
+	},
+	{
+		"id":7,
+		"name":"Pencil",
+		"quantity":100,
+		"price":1000,
+		"manufactured":"pune"
+	},
+	{
+		"id":8,
+		"name":"Stapler",
+		"quantity":50,
+		"price":700,
+		"manufactured":"mumbai"
+	},
+	{
+		"id":9,
+		"name":"Liquid Soap",
+		"quantity":5,
+		"price":100,
+		"manufactured":"pune"
+	},
+	{
+		"id":10,
+		"name":"Toothbrush",
+		"quantity":2,
+		"price":150,
+		"manufactured":"mumbai"
+	}
+	]
+)
+
+
+db.product.find(
+	{"price":{$gt:10000}}
+).pretty()
+
+
+db.product.find().sort({"name":-1})
+
+
+db.product.find(
+	{
+		$and:[
+			{"manufactured":"mumbai"},
+			{"price":{$gt:10000}}
+		]
+	}
+)
+
+
+
+db.product.find().sort({"price":1}).limit(1)
+
+
+db.product.remove(
+	{"id":5}
+)
+
+
+db.product.update(
+	{"id":7},
+	{
+		"id":7,
+		"name":"Pencil",
+		"quantity":100,
+		"price":100,
+		"manufactured":"pune"
+	}
+)
+
