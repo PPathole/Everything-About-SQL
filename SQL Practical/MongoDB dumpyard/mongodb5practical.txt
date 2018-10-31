@@ -1,0 +1,68 @@
+Create MongoDB collection to store details of Movies (name, director, type, likes, grade, collection ) and perform following queries: 
+1)	Insert 10 documents in the collection
+2)	Display all the movies directed by a director ‘Karan’
+3)	Display all the movies directed by ‘Karan’ or ‘Yash’
+4)	Sort the movies based on the obtained likes received.
+5)	Display movies directed by ‘Abhinav’ having grade 1 or 2
+6)	Display movie name which were produce by ‘Prakash’ having more than 20000 likes
+7)	Display all Comedy movies names with their director names.
+8)	Calculate total collection of movies according to their directors
+
+use db
+db.movies.insert(
+	[
+	
+	
+	]
+)
+
+db.movies.find(
+	{"director":"karan"}
+).pretty()
+
+db.movies.find(
+	{$or:[
+		{"director":"karan"},
+		{"director":"yash"}
+	]
+	}
+)
+
+db.movies.find().sort({"likes": -1})
+
+
+db.movies.find(
+	
+	{
+	
+		"director":"abhinav"
+	}$and:[
+		{
+			$or:[
+				{"grade":1},
+				{"grade":2}
+			]
+		
+		}
+	
+	]
+	
+)
+
+
+db.movies.find(
+	{
+		$and:[
+			{"director":"prakash"},
+			{"likes":{$gt:20000}}
+		]
+	}
+)
+
+
+db.movies.find(
+	{"type":"comedy"}
+	{"director":1, "type":1, "_id":0}
+).pretty()
+
+
