@@ -1,0 +1,32 @@
+Create table Employee (empid, ename, salary, ,job,dept, city, dateofjoining) and perform following queries.
+1)	Create empid as primary key
+2)	Display employee names and id of all employees whose job is “Programmer” or “Manager” and salary not equals to 10000,20000 and 50000 
+3)	List all the employees who are joined in July.
+4)	Display those employees who get more salary than the salary of  Employee “Amar”
+5)	Increase salary of all employees by 5%
+6)	Calculate average salary of each department
+7)	 Display employee name and their job who stays in city name starts with “N”
+
+
+CREATE TABLE employee(
+	id int,
+	name varchar(30),
+	salary int,
+	job varchar(30),
+	dept varchar(30),
+	city varchar(30),
+	doj date,
+	PRIMARY KEY(id)
+);
+
+
+SELECT name,id FROM employee WHERE salary NOT IN(10000,20000,50000) AND job="Programmer" OR job="Manager";
+
+SELECT * FROM employee WHERE MONTH(doj)=7;
+
+SELECT * FROM employee WHERE salary > (SELECT salary FROM employee WHERE name="Amar");
+
+UPDATE employee SET salary = salary+(salary/100*5);
+
+SELECT name,job FROM employee WHERE city LIKE "N%";
+

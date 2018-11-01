@@ -1,0 +1,37 @@
+Create a table EMP:EMPNO, ENAME, JOB, DESG, HIREDATE, SAL, DEPTNO 
+  
+1.	Create table , set appropriate Primary Key. Add 10 rows to the table.
+2.	Display different types of designations
+3.	Write a query to display the name and salary for all employees whose salary is not in the range 10,000 through 45,000 and are in department 30 or 100.
+4.	Increase the salary of 7499 by 10% 
+5.	Create a view that holds data of employee and their salaries with their designation
+6.	Display Employee names with their Departments.
+7.	Display employees whose name has ‘a’ in it.
+
+CREATE TABLE employee(
+	id int,
+	name varchar(30),
+	job varchar(30),
+	desg varchar(30),
+	hiredate date,
+	salary int,
+	deptno int,
+	PRIMARY KEY(id)
+);
+
+INSERT INTO employee VALUES();
+
+SELECT DISTINCT desg FROM employee;
+
+SELECT name,salary FROM employee WHERE salary NOT BETWEEN 10000 AND 45000 AND deptno IN(30,100);
+
+UPDATE employee SET salary = salary+(salary/100*10)  WHERE id = 7499;
+
+CREATE VIEW record AS SELECT id,name,job,salary,desg FROM employee;
+
+SELECT name,deptno FROM employee;
+
+SELECT name FROM employee WHERE name LIKE "%a%";
+
+
+

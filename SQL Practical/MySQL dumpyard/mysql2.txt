@@ -1,0 +1,57 @@
+Design following queries in MYSQL: 
+Employee(ename,ssn,dateofbirth,city,salary,dno,managerid)
+Department(dname,dno)
+Dept_locations(dno,dcity)
+Project(pname,pnumber,dno)
+1)	Create following tables with appropriate primary keys.
+2)	Insert 5 records in each table.
+3)	Retrieve the names of employees in department 5 who works on ‘product x’ project.
+
+4)	List the names of employees who have dependent with the same first name as themselves.
+5)	Find the names of employees that are managed by ‘smith’.
+6)	For each project, list the project name and department name in which that project is assigned
+7)	Retrieve the names of departments which are located at Mumbai.
+
+
+CREATE TABLE employee(
+	name varchar(30),
+	ssn int(11),
+	doB date,
+	city varchar(30),
+	salary int(11),
+	dno int(11),
+	managerid int(11),
+	PRIMARY KEY(ssn)
+);
+
+CREATE TABLE department(
+	name varchar(30),
+	dno int(11),
+	PRIMARY KEY(dno)
+);
+
+CREATE TABLE dept_locations(
+	dno int(11),
+	city varchar(30),
+	PRIMARY KEY(dno)
+);
+
+CREATE TABLE project(
+	name varchar(30),
+	pno int(11),
+	dno int(11),
+	PRIMARY KEY(pno)
+);
+
+INSERT INTO employee VALUES();
+INSERT INTO department VALUES();
+INSERT INTO dept_locations VALUES();
+INSERT INTO project VALUES();
+
+SELECT e.name, e.dno, p.name FROM employee e, project p WHERE e.dno = 5 AND p.name="product x";
+
+SELECT name FROM employee WHERE managerid=1;
+
+SELECT p.name,d.name FROM project p, department d WHERE p.dno = d.dno;
+
+SELECT e.name, dl.city FROM employee e, dept_locations dl WHERE dl.city="mumbai";

@@ -1,0 +1,32 @@
+Create a table EMP:EMPNO, ENAME,MGR, HIREDATE, SAL, DEPTNAME 
+  
+1.	Create table , set appropriate Primary Key.Add 10 rows to the table.
+2.	Display employee who joined in December 2017.
+3.	Display employees staying in Pune having salary greater than 45000.
+4.	Modify deptname of “Smith ” to “Research”
+5.	Display the highest paid employee in each dept
+6.	Display average salary of “Sales” dept
+7.	Display employees whose name starts with A.
+
+CREATE TABLE employee(
+	id int,
+	name varchar(30),
+	mgr int,
+	hiredate date,
+	sal int,
+	deptname varchar(30),
+	PRIMARY KEY(id)
+);
+
+INSERT INTO employee VALUES();
+
+SELECT * FROM employee WHERE YEAR(hiredate)="2017";
+
+UPDATE employee SET deptname="Research" WHERE deptname="Smith";
+
+SELECT MAX(sal) FROM employee GROUP BY deptname;
+
+SELECT AVG(sal) FROM employee WHERE deptname="sales";
+
+SELECT name FROM employee WHERE name LIKE "A%";
+

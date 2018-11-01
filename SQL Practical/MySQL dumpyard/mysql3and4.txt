@@ -1,0 +1,19 @@
+Using MySQL /JDBC, Create table Employee and Perform insert, update and delete table operations.
+
+Using MySQL /JDBC, Create table Books and Perform insert, update and delete table operations.
+
+CREATE TABLE employee(
+	id int(11) NOT NULL,
+	name varchar(30) NOT NULL,
+	dept varchar(30),
+	email varchar(30),
+	city varchar(30),
+	salary int(11),
+	PRIMARY KEY(id)
+);
+
+INSERT INTO employee VALUES();
+
+UPDATE employee SET salary=20000 WHERE id=1;
+
+DELETE FROM employee;

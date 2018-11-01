@@ -1,0 +1,32 @@
+Create table Employee (empid, ename, salary, dept, city, dateofjoining) and perform following queries.
+1)	Create empid as primary key
+2)	Create user defined index on any column.
+3)	Display those employees who get more salary than the salary of  Employee id ‘101’
+4)	Increase salary of all employees by 5%
+5)	display all the employee in sorted order of their name
+6)	Calculate total number of employees in each department
+7)	calculate average salary of each department
+
+CREATE TABLE employee(
+	id int,
+	name varchar(30),
+	salary int,
+	dept int,
+	city varchar(30),
+	dateofjoining date,
+	PRIMARY KEY(id)
+);
+
+
+CREATE INDEX idx ON employee(id);
+//CREATE INDEX index_name ON table_name(col1, col2...coln);
+
+SELECT * FROM employee WHERE salary > (SELECT salary FROM employee WHERE id=101);
+
+UPDATE employee SET salary= salary+(salary/5*100);
+
+SELECT * FROM employee ORDER BY name;
+SELECT * FROM employee ORDER BY name DESC;
+
+
+
