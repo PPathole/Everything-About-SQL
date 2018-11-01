@@ -1,0 +1,10 @@
+Q.Write a database trigger on Library table. The System should keep track of the records that are being updated or deleted. The old value of updated or deleted records should be added in Library_Audit table
+
+set serveroutput on;
+create or replace trigger libtrig
+	after update or delete of id on libr
+	for each row
+	begin
+		insert into Library_Audit values(:old:id,:old:name)
+	end;
+	/

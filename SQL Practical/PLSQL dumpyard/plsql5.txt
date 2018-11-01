@@ -1,0 +1,23 @@
+Write a PL/SQL block for following requirement and handle the exceptions.
+Roll no. of student will be entered by user. Attendance of roll no. entered by user will be checked in Stud table. If attendance is less than 75% then display the message “Term not granted” and set the status in stud table as “D”. Otherwise display message “Term granted” and set the status in stud table as “ND”.
+*************************************************
+set serveroutput on;
+declare
+	Cursor crsr_att is select r_no,att,status from stud where att<75;
+	mroll stud.r_no%type;
+	matt stud.att%type;
+	mstatus stud.status%type;
+begin
+	open crsr_att;
+	if crsr_att%isopen then
+		loop
+			fetch crsr_att into mroll,matt,mstatus;
+		exit when crsr_att%notfound;
+		if crsr_att%found then
+			update stud set status='D' where r_no=mroll;
+			insert into d_stud values(mroll,matt);
+		end if;
+		end loop;
+	end if;
+end;
+/

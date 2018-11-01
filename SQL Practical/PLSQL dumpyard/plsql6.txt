@@ -1,0 +1,28 @@
+Write a PL/SQL block of code using parameterized Cursor, that will merge the data available in the newly created table N_RollCall with the data available in the table O_RollCall. If the data in the
+
+*********************************************************
+set serveroutput on;
+declare
+	cursor crsr_class is select * from O_RollCall;
+	cursor crsr_chk(str_name varchar) is select roll from N_RollCall where name = str_name;
+	str_roll N_RollCall.roll%type;
+	str_name N_RollCall.name%type;
+	v varchar(10);
+begin
+	open crsr_class;
+	loop
+		fetch crsr_class into str_roll,str_name;
+		exit when crsr_class%NOTFOUND;
+		open crsr_chk(str_name);
+		fetch crsr_chk into v;
+		if crsr_chk%FOUND then
+			dbms_output.put_line('student'||str_name||'exist');
+		else
+			dbms_output.put_line('student'||str_name||'not exist. Inserting in N_RollCall table');
+			insert into N_RollCall values(str_roll,str_name);
+		end if;
+		close crsr_chk;
+	end loop;
+	close crsr_class;
+end;
+/

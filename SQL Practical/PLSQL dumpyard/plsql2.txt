@@ -1,0 +1,39 @@
+Write a PL/SQL block of code for the following requirements:- 
+Schema:   
+1. Borrower(Rollin, Name, DateofIssue, NameofBook, Status) 
+2. Fine(Roll_no,Date,Amt) 
+Accept roll_no & name of book from user. 
+Check the number of days (from date of issue), if days are between 15 to 30 then fine amount will be Rs 5per day. 
+If no. of days>30, per day fine will be Rs 50 per day & for days less than 30, Rs. 5 per day. 
+After submitting the book, status will change from I to R. 
+If condition of fine is true, then details will be stored into fine table. 
+
+
+*************************************************************************
+set serveroutput on;	
+declare
+	c_rollno Mohit.rollno%type:=&c_rollno;
+	c_bookname Mohit.bookname%type:=&c_bookname;
+	c_fine Fine.fine%type;
+	c_issuedate Mohit.doi%type;
+	c_nodays number(4);
+
+begin
+	select doi into c_issuedate from Mohit where rollno=c_rollno AND bookname=c_bookname;
+	c_nodays:=sysdate-to_date(c_issuedate);
+	if(c_nodays>15 and c_nodays<30) then
+		c_fine:=5*c_nodays;
+	elsif(c_nodays>30) then
+		c_fine:=150+(c_nodays-30)*50;
+	end if;
+	if(c_fine>0) then
+		insert into Fine values(c_rollno,sysdate,c_fine);
+	end if;	
+	update Mohit set status='R' where rollno=c_rollno;
+	
+
+exception 
+	when no_data_found then
+		dbms_output.put_line('Incorrect RollNo or Bookname entered');
+end;
+/

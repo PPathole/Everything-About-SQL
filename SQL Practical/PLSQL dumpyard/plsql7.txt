@@ -1,0 +1,20 @@
+Write trigger which will not allow inserting on Monday, updating on Tuesday, deleting on Friday 
+***************************************
+
+CREATE OR REPLACE TRIGGER trig1
+BEFORE INSERT or UPDATE or DELETE ON employees
+for each row
+BEGIN
+ IF inserting then
+ 	IF TO_CHAR(SYSDATE,'DY') IN ('MON') THEN
+ 	RAISE_APPLICATION_ERROR(-20500,'You cannot insert into the table on Monday');
+ END IF;
+ IF updating then
+ 	IF TO_CHAR(SYSDATE,'DY') IN ('TUE') THEN
+ 	RAISE_APPLICATION_ERROR(-20501,'You cannot update into the table on Tuesday');
+ END IF;
+ IF deleting then
+ 	IF TO_CHAR(SYSDATE,'DY') IN ('FRI') THEN
+ 	RAISE_APPLICATION_ERROR(-20502,'You cannot delete from the table on friday');
+ END IF;
+END;

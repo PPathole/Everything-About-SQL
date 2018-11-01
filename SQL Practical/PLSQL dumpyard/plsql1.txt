@@ -1,0 +1,21 @@
+Q.Write a trigger to check salary during every insert to employee table if salary<5000 and if salary>5000 then display exception msg. 
+
+**Make Table emp with eno,name,salary**
+**Make Table tracking with eno,name,salary
+*******************Program*********************
+set serveroutput on;
+create or replace trigger etrig
+	before insert or update of salary on emp
+	for each row
+	declare 
+		msal number(10);
+	begin
+		msal:=:new.salary;
+		if msal<50000 then
+			raise_application_error(-200003,'Salary cannot be less than 50000');
+		else
+			insert into tracking values(:new.eno,:new.salary);
+			dbms_output.put_line('Updation Successful');
+		end if;
+	end;
+	/
