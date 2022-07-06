@@ -28,3 +28,12 @@ INNER JOIN film
 ON film.film_id = film_actor.film_id
 WHERE first_name = 'Nick'
 AND last_name = 'Wahlberg';
+
+
+SELECT title FROM film
+INNER JOIN inventory
+ON film.film_id = inventory.film_id
+INNER JOIN rental
+ON inventory.inventory_id = rental.inventory_id
+WHERE rental.return_date
+BETWEEN '2005-05-29' AND '2005-05-30';
