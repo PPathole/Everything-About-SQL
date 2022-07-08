@@ -97,3 +97,58 @@ INSERT INTO employees (
  100)
 
 
+CREATE TABLE teachers(
+    teacher_id SERIAL PRIMARY KEY,
+    first_name VARCHAR (100),
+    last_name VARCHAR (100),
+    homeroom_number INTEGER,
+    department VARCHAR (100),
+    email VARCHAR (200) UNIQUE,
+    phone INTEGER UNIQUE
+);
+
+CREATE TABLE students(
+    student_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    homeroom_number INTEGER,
+    phone INTEGER UNIQUE NOT NULL,
+    email VARCHAR (200) UNIQUE,
+    graduation_year INTEGER
+);
+
+SELECT * FROM students;
+
+INSERT INTO students (
+    first_name,
+    last_name,
+    homeroom_number,
+    phone,
+    graduation_year
+)VALUES(
+    'Mark',
+    'Watney',
+    5,
+    777-555-1234,
+    2035
+);
+
+SELECT * FROM teachers;
+
+INSERT INTO teachers(
+    first_name,
+    last_name,
+    homeroom_number,
+    department,
+    email,
+    phone
+)VALUES(
+    'Jonas',
+    'Salk',
+    5,
+    'Biology',
+    'jsalk@school.org',
+    777-555-4321
+);
+
+
